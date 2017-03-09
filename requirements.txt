@@ -1,0 +1,6 @@
+sanic
+pillow
+numpy
+aiohttp
+nose
+webtest
