@@ -2,7 +2,7 @@ Questions and Answers to Scaling
 ================================
 
 
-1. How would you measure the performance of your service?
+**How would you measure the performance of your service?**
 
 - Performance can be measured with benchmarking tools such as wrk ( https://github.com/wg/wrk )
 
@@ -24,7 +24,7 @@ Questions and Answers to Scaling
 
 
 
-2. What are some strategies you would employ to make your service more scalable?
+**What are some strategies you would employ to make your service more scalable?**
 
 
 - Use more processes for the application. Also use a asyncio compatible application server. ( http://uwsgi-docs.readthedocs.io/en/latest/asyncio.html )
@@ -35,13 +35,13 @@ Questions and Answers to Scaling
 
 
 
-3. How would your design change if you needed to store the uploaded images?
+**How would your design change if you needed to store the uploaded images?**
 
 - I would add another task in asciify/tasks.py for storing the image into S3 or another storage space. This would also need to be added as a celery task to stop the API from blocking.
 
 
 
-4. What are the cost factors of your scaling choices? Which parts of your solution would grow in cost the fastest?
+**What are the cost factors of your scaling choices? Which parts of your solution would grow in cost the fastest?**
 
 - Scaling out would require additional cloud instances for the applications, as well as server for the load balancer. 
 
@@ -49,7 +49,7 @@ Questions and Answers to Scaling
 
 
 
-5. Where are your critical points of failure and how would you mitigate them?
+**Where are your critical points of failure and how would you mitigate them?**
 
 - Points of failure would be the single application that is currently running. You can mitigate this with multiple application servers behind a load balancer. 
 
@@ -57,7 +57,7 @@ Questions and Answers to Scaling
 
 
 
-6. How given a change to the algorithm what issues do you foresee when upgrading your scaled-out solution?
+**How given a change to the algorithm what issues do you foresee when upgrading your scaled-out solution?**
 
 - If the algorithm were to change I would need to implement different versions in the API that can all be callable from a single endpoint. This way we can compare the speed and accuracy of each algorithm by merely providing a query paramter or endpoint specification for the specific version we want to test.
 
@@ -65,7 +65,7 @@ Questions and Answers to Scaling
 
 
 
-7. If you wanted to migrate your scaled-out solution to another cloud provider (with comparable offerings but different API’s) how would you envision this happening? How would deal with data consistency during the transition and rollbacks in the event of failures?
+**If you wanted to migrate your scaled-out solution to another cloud provider (with comparable offerings but different API’s) how would you envision this happening? How would deal with data consistency during the transition and rollbacks in the event of failures?**
 
 - Make a checklist of all application components. 
 - Evaluate costs for transition to comparable cloud flavors.
