@@ -1,12 +1,23 @@
-
 from PIL import Image
 import numpy as np
 
 chars = np.asarray(list(' .,:;irsXA253hMHGS#9B&@'))
 
+
+'''
+TODO: implement celery for CPU tasks
+'''
+
 def image_to_ascii(img, max_height=None, scale=None, factor=None):
 
     img = Image.open(img)
+
+    if max_height and not isinstance(max_height, float):
+        max_height = float(max_height)
+    if scale and not isinstance(scale, float):
+        scale = float(scale)
+    if factor and not isinstance(factor, float):
+        factor = float(factor)
 
     width, height = img.size
     if not scale and not max_height:
@@ -15,8 +26,8 @@ def image_to_ascii(img, max_height=None, scale=None, factor=None):
     SC = scale or .5
     GCF = factor or 1
     WCF = (7/4)
-    if max_height and height > max_height:
-        SC = 1 / (height / max_height)
+    if max_height and height > float(max_height):
+        SC = 1 / (height / float(max_height))
 
     S = ( round(img.size[0]*SC*WCF), round(img.size[1]*SC) )
     img = np.sum( np.asarray( img.resize(S) ), axis=2)

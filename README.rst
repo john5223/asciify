@@ -44,6 +44,27 @@ python asciify
 
 
 
+Run tests
+===========
+
+To run tests either use tox:
+
+```
+tox
+```
+
+
+or use pytest directly
+
+
+```
+pytest test -s
+```
+
+
+
+
+
 Use cURL for sending images
 ============================
 
@@ -56,11 +77,47 @@ curl -F file=@tests/images/earth.png 127.0.0.1:8000/art
 Ascii art is returned in json format by default.
 
 
-To return ascii art as text format use query parameter "format=text":
+To return ascii art as text format use query parameter "format=text".
+You can also specify scale, factor and/or max_height as query parameters
+
+
+Examples:
 
 
 ```
- curl -F file=@tests/images/earth.png "127.0.0.1:8000/art?format=text"                                                                                                         ⏎ 
+
+
+curl -F file=@tests/images/earth.png "127.0.0.1:8000/art?format=text&max_height=20&factor=2.5"
+
+
+@@@@@@@@@@@@@.       i@@@@@@@@@@@@@
+@@@@@@@@@                i@@@@@@@@@
+@@@@@@s                    .&@@@@@@
+@@@@@                  ..   .i@@@@@
+@@@@.                 ..    .,,@@@@
+@@@,                .       ..;;&@@
+@@:..              ..,,.    ...,r@@
+@s,,..            ..,,..   ...,,iG@
+@::,,... ...     ..,,,    ...,,,ri@
+@:::,,.............,,   ....,,,:;r@
+@;:::,,,........,,,:  .....,,,:::;@
+@;;:::,,,..::,,....,.....,,,:::::2@
+@@::::::,,,,.;;;;;..i,:,,,,:::::,@@
+@@i::;::::,,,,,,,:i,,rrrrr;::;:,@@@
+@@@;,::;:::::::,,,,,irrssssrri.s@@@
+@@@@@.,::;;::::::::;issssssi:.@@@@@
+@@@@@&,.,,:::::;;;;:;:;i;:. sB&&@@@
+@@@&&9#SG  ..,,,,,,,,,. . HGS#9&&@@
+@@@@&&B9SGHM,         :hMHGS#9&&@@@
+@@@@@@@&&&&BB999#####99BB&&&&@@@@@@%
+
+
+
+
+
+curl -F file=@tests/images/earth.png "127.0.0.1:8000/art?format=text&max_height=50"
+
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@i52AAA5i@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@sXr,...       .......i33@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@3rr,...          ..........,,,,;33@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -112,27 +169,5 @@ To return ascii art as text format use query parameter "format=text":
 @@@@@@@@@@@@@@@@&@&&&&&&&&&&&&&&&BBBBBBBBBBBBBBBBBBBBBBBBB&&&&&&&&&&&&&&&@&@@@@@@@@@@@@@
 @@@@@@@@@@@@@@@@@@@@@@@&@&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@%
 ```
-
-
-
-
-Run tests
-===========
-
-To run tests either use tox:
-
-```
-tox
-```
-
-
-or use pytest directly 
-
-
-```
-pytest test -s
-```
-
-
 
 

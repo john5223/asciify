@@ -23,14 +23,19 @@ async def art(request):
     else:
         image = request.files.get('file')
         img = io.BytesIO(image.body)
-        art = image_to_ascii(img)
+
+        kwargs = {
+            'scale': request.args.get('scale'),
+            'factor': request.args.get('factor'),
+            'max_height': request.args.get('max_height'),
+        }
+        art = image_to_ascii(img, **kwargs)
 
         if request.args.get('format') == 'text':
             return text(art)
         else:
             ret  = {'status': 'success', 'name': image.name, 'art': art}
             return json(ret)
-
 
 
 if __name__ == '__main__':
