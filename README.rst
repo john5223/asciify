@@ -7,6 +7,17 @@ Assumes your python version is version 3.
 Otherwise replace "python" with "python3" below.
 
 
+Was going to use aiohttp with uvloop after reading this:
+
+https://magic.io/blog/uvloop-blazing-fast-python-networking/
+
+
+But then I found Sanic which is already built aroudn uvloop and was inspired by flask. It is a relatively new framework but I thought I would test it out to see the performance for myself.
+
+https://www.reddit.com/r/Python/comments/57i301/what_if_flask_was_async_and_6x_faster_out_of_the/
+
+
+
 
 Run API in debug mode
 ======================
